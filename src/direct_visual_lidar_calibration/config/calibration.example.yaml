@@ -1,0 +1,50 @@
+# LiDAR–相机标定流水线配置
+# 用法：
+#   ros2 run direct_visual_lidar_calibration preprocess --config /path/to/calibration.yaml
+#   ros2 run direct_visual_lidar_calibration run_calibration.py /path/to/calibration.yaml
+
+paths:
+  # rosbag2 父目录（其第一层子目录各自为一个 bag）
+  data_path: /path/to/session/raw
+  # 预处理结果与 calib.json 输出目录
+  dst_path: /path/to/session/processed
+
+preprocess:
+  # 自动检测话题；若为 false，请填写下方 image/points（及可选 camera_info）话题
+  auto_topic: false
+  # 旋转式 LiDAR（Ouster / Velodyne 等）设为 true
+  dynamic_lidar_integration: false
+  visualize: true
+  intensity_channel: auto
+  image_topic: /camera/image_color/compressed
+  points_topic: /lidar/points
+  # camera_info_topic: /camera/camera_info
+  # 无 CameraInfo 时填写相机模型与内参（替换为你的实际标定值）
+  camera_model: plumb_bob
+  camera_intrinsics: [0.0, 0.0, 0.0, 0.0]          # fx, fy, cx, cy
+  camera_distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]  # k1, k2, p1, p2, k3
+  # voxel_resolution: 0.002
+  # min_distance: 1.0
+  # k_neighbors: 20
+
+initial_guess:
+  # auto：SuperGlue + initial_guess_auto（非商业许可限制）
+  # manual：打开 GUI 手动选点
+  method: auto
+  rotate_camera: 0
+  rotate_lidar: 0
+  # superglue: outdoor
+  # ransac_iterations: 8192
+  # ransac_error_thresh: 10.0
+  # robust_kernel_width: 10.0
+
+calibrate:
+  registration_type: nid_bfgs
+  nid_bins: 16
+  # 一键流水线建议保持 true，标定结束后自动退出
+  auto_quit: true
+  background: false
+
+viewer:
+  # 流水线末尾是否打开 viewer
+  enabled: true

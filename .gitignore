@@ -1,0 +1,23 @@
+# colcon
+build/
+install/
+log/
+
+# local calibration data / bags (create locally)
+data/
+
+# editor / runtime
+.vscode/
+*.user
+imgui.ini
+.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
