@@ -34,8 +34,8 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots and sample data to reproduce your problem.
 
 **Environment:**
- - OS: [e.g. Ubuntu 20.04]
- - ROS version: [e.g., ROS1 noetic]
+ - OS: [e.g. Ubuntu 22.04]
+ - ROS version: [ROS 2 Humble]
 
 **Additional context**
 Add any other context about the problem here.

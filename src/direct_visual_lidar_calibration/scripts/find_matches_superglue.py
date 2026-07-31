@@ -2,17 +2,14 @@
 # WARNING: SuperGlue is allowed to be used for non-commercial research purposes!!
 #        : You must carefully check and follow its licensing condition!!
 #        : https://github.com/magicleap/SuperGluePretrainedNetwork/blob/master/LICENSE
-from email.mime import image
-import sys
 import cv2
-import math
 import json
 import torch
 import numpy
 import argparse
 import matplotlib
 from models.matching import Matching
-from models.utils import (make_matching_plot_fast, frame2tensor)
+from models.utils import frame2tensor
 
 def main():
   print('\033[93m' + '****************************************************************************************************' + '\033[0m')

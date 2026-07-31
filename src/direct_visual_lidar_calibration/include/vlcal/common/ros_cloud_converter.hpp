@@ -3,14 +3,15 @@
 #include <memory>
 #include <vector>
 #include <iostream>
-#include <boost/format.hpp>
+#include <cmath>
+#include <unordered_map>
 
 #include <Eigen/Core>
+#include <sensor_msgs/msg/point_cloud2.hpp>
 #include <vlcal/common/raw_points.hpp>
 
-#ifdef VLCAL_ROS2
-#include <sensor_msgs/msg/point_cloud2.hpp>
 namespace vlcal {
+
 using PointCloud2 = sensor_msgs::msg::PointCloud2;
 using PointCloud2Ptr = sensor_msgs::msg::PointCloud2::SharedPtr;
 using PointCloud2ConstPtr = sensor_msgs::msg::PointCloud2::ConstSharedPtr;
@@ -20,39 +21,6 @@ template <typename Stamp>
 double to_sec(const Stamp& stamp) {
   return stamp.sec + stamp.nanosec / 1e9;
 }
-
-inline builtin_interfaces::msg::Time from_sec(const double time) {
-  builtin_interfaces::msg::Time stamp;
-  stamp.sec = std::floor(time);
-  stamp.nanosec = (time - stamp.sec) * 1e9;
-  return stamp;
-}
-
-}  // namespace vlcal
-#else
-#include <sensor_msgs/PointCloud2.h>
-namespace vlcal {
-using PointCloud2 = sensor_msgs::PointCloud2;
-using PointCloud2Ptr = sensor_msgs::PointCloud2::Ptr;
-using PointCloud2ConstPtr = sensor_msgs::PointCloud2::ConstPtr;
-using PointField = sensor_msgs::PointField;
-
-template <typename Stamp>
-double to_sec(const Stamp& stamp) {
-  return stamp.toSec();
-}
-
-inline ros::Time from_sec(const double time) {
-  ros::Time stamp;
-  stamp.sec = std::floor(time);
-  stamp.nsec = (time - stamp.sec) * 1e9;
-  return stamp;
-}
-
-}  // namespace vlcal
-#endif
-
-namespace vlcal {
 
 template <typename T>
 Eigen::Vector4d get_vec4(const void* x, const void* y, const void* z) {

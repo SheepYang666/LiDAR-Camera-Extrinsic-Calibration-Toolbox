@@ -8,15 +8,11 @@
 
   <license>MIT</license>
 
-  <buildtool_depend condition="$ROS_VERSION == 1">catkin</buildtool_depend>
-  <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake</buildtool_depend>
-  <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake_python</buildtool_depend>
-  
-  <depend condition="$ROS_VERSION == 1">roscpp</depend>
-  <depend condition="$ROS_VERSION == 1">rosbag</depend>
-  <depend condition="$ROS_VERSION == 2">rclcpp</depend>
-  <depend condition="$ROS_VERSION == 2">rosbag2_cpp</depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
 
+  <depend>rclcpp</depend>
+  <depend>rosbag2_cpp</depend>
   <depend>fmt</depend>
   <depend>cv_bridge</depend>
   <depend>pcl_ros</depend>
@@ -24,6 +20,6 @@
   <depend>yaml-cpp</depend>
 
   <export>
-    <build_type condition="$ROS_VERSION == 2">ament_cmake</build_type>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>

@@ -3,12 +3,9 @@
 !!!note
     We provide docker images so that the user can do calibration without installation: [Docker images](docker.md)
 
-!!!warn
-    On Ubuntu 20.04, [install a newer cmake](https://apt.kitware.com/).
-
 ## Dependencies
 
-- [ROS1/ROS2](https://www.ros.org/)
+- [ROS 2 Humble](https://docs.ros.org/en/humble/)
 - [PCL](https://pointclouds.org/)
 - [OpenCV](https://opencv.org/)
 - [GTSAM](https://gtsam.org/)
@@ -66,16 +63,13 @@ source ~/.bashrc
 
 ## Build direct_visual_lidar_calibration
 
-```bash
-# ROS1
-cd ~/catkin_ws/src
-git clone https://github.com/koide3/direct_visual_lidar_calibration.git --recursive
-cd .. && catkin_make
-```
+本仓库仅支持 **ROS 2 Humble**：
 
 ```bash
-# ROS2
 cd ~/ros2_ws/src
-git clone https://github.com/koide3/direct_visual_lidar_calibration.git --recursive
-cd .. && colcon build
+git clone https://github.com/SheepYang666/LiDAR-Camera-Extrinsic-Calibration-Toolbox.git
+# 或将 direct_visual_lidar_calibration 放进工作区 src/
+cd .. && colcon build --packages-select direct_visual_lidar_calibration
 ```
+
+工作区级安装与编译步骤见仓库根目录 [docs/install.md](../../../docs/install.md)。

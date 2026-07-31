@@ -19,7 +19,7 @@ This package provides a toolbox for LiDAR-camera calibration that is:
 
 ## Dependencies
 
-- [ROS1/ROS2](https://www.ros.org/)
+- [ROS 2 Humble](https://docs.ros.org/en/humble/)
 - [PCL](https://pointclouds.org/)
 - [OpenCV](https://opencv.org/)
 - [GTSAM](https://gtsam.org/)

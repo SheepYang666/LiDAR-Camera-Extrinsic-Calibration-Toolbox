@@ -29,13 +29,13 @@ def load_config(path: Path) -> dict:
   return data
 
 
-def require_paths(cfg: dict) -> tuple[str, str]:
+def require_dst_path(cfg: dict) -> str:
   paths = cfg.get('paths') or {}
   data_path = paths.get('data_path')
   dst_path = paths.get('dst_path')
   if not data_path or not dst_path:
     raise SystemExit("config 'paths' must define data_path and dst_path")
-  return str(data_path), str(dst_path)
+  return str(dst_path)
 
 
 def ros2_run(executable: str, args: Sequence[str]) -> None:
@@ -145,7 +145,7 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
     raise SystemExit(f'config not found: {config_path}')
 
   cfg = load_config(config_path)
-  _, dst_path = require_paths(cfg)
+  dst_path = require_dst_path(cfg)
   steps = parse_steps(args.steps)
 
   print(f'config : {config_path}')
